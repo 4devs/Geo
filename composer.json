@@ -1,0 +1,33 @@
+{
+    "name": "fdevs/geo",
+    "license": "MIT",
+    "type": "library",
+    "description": "library for working with geo point",
+    "homepage": "https://github.com/4devs/Geo",
+    "keywords": [
+        "geo",
+        "point"
+    ],
+    "authors": [
+        {
+            "name": "Samusev Andrey",
+            "email": "andrey@4devs.org",
+            "homepage": "http://andrey.4devs.io/"
+        },
+        {
+            "name": "4devs Community",
+            "homepage": "https://github.com/4devs/Geo/contributors"
+        }
+    ],
+    "require-dev": {},
+    "require": {
+        "php": ">=5.4"
+    },
+    "suggest": {
+        "doctrine/mongodb-odm": "to use with mongodb",
+        "symfony/form": "to use with form"
+    },
+    "autoload": {
+        "psr-4": {"FDevs\\Geo\\": ""}
+    }
+}
