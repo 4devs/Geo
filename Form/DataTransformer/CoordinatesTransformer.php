@@ -11,10 +11,6 @@ class CoordinatesTransformer implements DataTransformerInterface
      */
     public function transform($value)
     {
-        if (is_array($value)) {
-            $value = ['lat' => $value[0], 'lng' => $value[1]];
-        }
-
         return $value;
     }
 
@@ -23,8 +19,12 @@ class CoordinatesTransformer implements DataTransformerInterface
      */
     public function reverseTransform($value)
     {
-        return is_array($value) ? array_map(function ($val) {
-            return $val + 0;
-        }, array_values($value)) : null;
+        if ($value) {
+            $value = array_map(function ($val) {
+                return $val + 0;
+            }, $value);
+        }
+
+        return $value;
     }
 }

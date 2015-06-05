@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PointType extends AbstractType
 {
@@ -20,7 +20,7 @@ class PointType extends AbstractType
     {
         $builder
             ->add('coordinates', 'coordinates', ['required' => $options['required']])
-            ->addModelTransformer(new PointTransformer());;
+            ->addModelTransformer(new PointTransformer());
     }
 
     /**
@@ -42,17 +42,17 @@ class PointType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver
             ->setDefaults(
                 [
-                    'data_class' => 'FDevs\Geo\Model\Point',
+                    'data_class'          => 'FDevs\Geo\Model\Point',
                     'default_coordinates' => $this->coordinates,
-                    'required' => true
+                    'required'            => true,
                 ]
             )
-            ->setOptional(['default_coordinates'])
+            ->setDefined(['default_coordinates'])
             ->addAllowedTypes(['default_coordinates' => 'array']);
     }
 

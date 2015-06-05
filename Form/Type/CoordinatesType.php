@@ -4,12 +4,11 @@ namespace FDevs\Geo\Form\Type;
 use FDevs\Geo\Form\DataTransformer\CoordinatesTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class CoordinatesType extends AbstractType
 {
-
     /**
      * {@inheritDoc}
      */
@@ -23,25 +22,27 @@ class CoordinatesType extends AbstractType
         }
         $builder
             ->add(
-                'lat',
-                'text',
-                [
-                    'constraints' => array_merge($constraints, [new Assert\Range(['min' => -90, 'max' => 90])]),
-                    'attr'        => ['placeholder' => 'latitude'],
-                    'label'       => 'latitude',
-                    'required'    => $options['required'],
-                    'label_attr'  => ['class' => 'sr-only']
-                ]
-            )
-            ->add(
                 'lng',
                 'text',
                 [
-                    'constraints' => array_merge($constraints, [new Assert\Range(['min' => -180, 'max' => 180])]),
-                    'label'       => 'longitude',
-                    'attr'        => ['placeholder' => 'longitude'],
-                    'required'    => $options['required'],
-                    'label_attr'  => ['class' => 'sr-only']
+                    'constraints'   => array_merge($constraints, [new Assert\Range(['min' => -180, 'max' => 180])]),
+                    'label'         => 'longitude',
+                    'property_path' => '[0]',
+                    'attr'          => ['placeholder' => 'longitude'],
+                    'required'      => $options['required'],
+                    'label_attr'    => ['class' => 'sr-only']
+                ]
+            )
+            ->add(
+                'lat',
+                'text',
+                [
+                    'constraints'   => array_merge($constraints, [new Assert\Range(['min' => -90, 'max' => 90])]),
+                    'label'         => 'latitude',
+                    'attr'          => ['placeholder' => 'latitude'],
+                    'property_path' => '[1]',
+                    'required'      => $options['required'],
+                    'label_attr'    => ['class' => 'sr-only']
                 ]
             )
             ->addModelTransformer(new CoordinatesTransformer());
@@ -50,7 +51,7 @@ class CoordinatesType extends AbstractType
     /**
      * {@inheritDoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(['required' => true]);
     }

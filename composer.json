@@ -21,7 +21,8 @@
     ],
     "require-dev": {},
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "jmikola/geojson": "~1.0"
     },
     "suggest": {
         "doctrine/mongodb-odm": "to use with mongodb",

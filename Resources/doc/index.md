@@ -43,7 +43,7 @@ use FDevs\Geo\Form\Type\CoordinatesType;
 use FDevs\Geo\Form\Type\PointType;
 
 $formFactory = Forms::createFormFactoryBuilder()
-    ->addType(new CoordinatesType($siteConfig))
+    ->addType(new CoordinatesType())
     ->addType(new PointType())
     ->getFormFactory();
     

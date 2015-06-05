@@ -4,7 +4,7 @@ Geo Library
 Documentation
 -------------
 
-use [GeoJSON implementation for PHP](https://github.com/jmikola/geojson) for the stored in the database
+base model use [GeoJSON implementation for PHP](https://github.com/jmikola/geojson) for the stored in the database
 
 Installation
 ------------
